@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Create product</h1>
+<form th:action="@{/posts/create}" th:object="${post}" method="post">
+    <span>Title: <input type="text" th:field="*{title}"></span>
+    <span>Post text: <input type="text" th:field="*{postText}"></span>
+    <input type="submit" title="Create">
+</form>
+<div>
+    <a th:href="@{/posts}">Back to list</a>
+</div>
+</body>
+</html>

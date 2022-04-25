@@ -1,0 +1,26 @@
+<link rel="stylesheet" th:href="@{/styles.css}">
+
+
+
+    <tr th:each="product: ${products}">
+        <td th:text="${product.getId()}"> </td>
+        <td> <a th:text="${product.getTitle()}" th:href="@{/products/{id}(id=${product.getId})}"></a>  </td>
+        <td th:text="${product.getDescription()}"></td>
+    </tr>
+
+
+
+    pom.xml
+    		<dependency>
+    			<groupId>org.springframework.security</groupId>
+    			<artifactId>spring-security-test</artifactId>
+    			<scope>test</scope>
+    		</dependency>
+    				<dependency>
+            			<groupId>org.thymeleaf.extras</groupId>
+            			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+            		</dependency>
+            		<dependency>
+            			<groupId>org.springframework.boot</groupId>
+            			<artifactId>spring-boot-starter-security</artifactId>
+            		</dependency>
