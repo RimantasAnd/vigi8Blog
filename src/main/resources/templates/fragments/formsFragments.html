@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:action="@{/users/create}" th:object="${user}" method="post" class="row g-3" th:fragment="user-input-form">
+
+    <div class="col-md-4">
+        <label for="validationCustom00" class="form-label" th:text=#{userCreateFormNickNameLabel}></label>
+        <input type="text" class="form-control" id="validationCustom00" th:field="*{nickName}" th:errorclass="error"
+               th:placeholder="#{userCreateFormNickNamePlaceholder}" aria-describedby="validationServer00Feedback"  required>
+
+        <div  th:class="${#fields.hasErrors('nickName') ? 'invalid-feedback' : 'valid-feedback'}" >
+            <ul>
+                <li th:each="err : ${#fields.errors('nickName')}" th:text=${err}></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <label for="validationCustom01" class="form-label" th:text=#{userCreateFormNameLabel}></label>
+        <input type="text" class="form-control" id="validationCustom01" th:field="*{name}" value="Mark" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <label for="validationCustom02" class="form-label" th:text=#{userCreateFormSurNameLabel}></label>
+        <input type="text" class="form-control" id="validationCustom02" th:field="*{surname}" value="Otto" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <label for="validationCustom03" class="form-label" th:text=#{userCreateFormPasswdLabel}></label>
+        <input type="password" class="form-control" id="validationCustom03" th:field="*{password}"required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <!--    th:selected="${item.codItem} eq ${defaultCodItem}"-->
+
+    <div class="col-md-4">
+        <label for="validationCustom04" class="form-label" th:text=#{userCreateFormEmailLabel} >Email</label>
+        <input type="email" class="form-control" id="validationCustom04" th:field="*{email}"th:errorclass="error"
+               th:placeholder="#{userCreateFormEmailPlaceholder}" aria-describedby="validationServer04Feedback"  required>
+
+        <div  th:class="${#fields.hasErrors('email') ? 'invalid-feedback' : 'valid-feedback'}" >
+            <ul>
+                <li th:each="err : ${#fields.errors('email')}" th:text=${err}></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit">Submit form</button>
+    </div>
+</form>
+
+
+
+</body>
+</html>

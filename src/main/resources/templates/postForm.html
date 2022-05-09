@@ -2,17 +2,37 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Write a post</title>
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
 </head>
 <body>
-<h1>Create product</h1>
+<h1>Write post</h1>
+
+
 <form th:action="@{/posts/create}" th:object="${post}" method="post">
     <span>Title: <input type="text" th:field="*{title}"></span>
-    <span>Post text: <input type="text" th:field="*{postText}"></span>
+<!--    <span>Post text: <input type="text" th:field="*{postText}"></span>-->
+    <textarea name="content" th:field="*{postText}" id="editor">
+            <!-- post name content id is using for JS -->
+            <!--&lt;p&gt;This is some sample content.&lt;/p&gt;-->
+    </textarea>
+
+<!--    <span>Post text: <input type="text" th:field="*{postText}"></span>-->
     <input type="submit" title="Create">
 </form>
+
+
+
+
 <div>
     <a th:href="@{/posts}">Back to list</a>
 </div>
+<script>
+      ClassicEditor
+          .create( document.querySelector( '#editor' ) )
+          .catch( error => {
+              console.error( error );
+          } );
+  </script>
 </body>
 </html>

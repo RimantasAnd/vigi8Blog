@@ -1,10 +1,10 @@
 package lt.codeacademy.vigi8BLog.Entity;
 
 
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,9 +13,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name = "posts")
 public class Post {
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -4,6 +4,5 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code= HttpStatus.NOT_FOUND,reason = "Post not found at the moment")
-public class PostNotFoundException extends RuntimeException {
-
+public class UserNotFoundException extends RuntimeException{
 }
