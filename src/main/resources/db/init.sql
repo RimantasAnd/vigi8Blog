@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS `vigi8blog`;
  CREATE TABLE IF NOT EXISTS `vigi8blog`.`users` (
   `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `nick_name` VARCHAR(64) NOT NULL COMMENT 'user nick name' ,
+  `user_name` VARCHAR(64) NOT NULL COMMENT 'user nick name' ,
   `password` VARCHAR(512) NOT NULL COMMENT 'hashed' ,
   `last_ip` VARCHAR(15)  COMMENT 'last seen IP' ,
   `name` VARCHAR(32)  comment 'user firs name',
@@ -9,8 +9,9 @@ CREATE DATABASE IF NOT EXISTS `vigi8blog`;
   `email` VARCHAR(128)  comment 'user email',
   `admin_lock` BOOLEAN NOT NULL DEFAULT FALSE COMMENT 'locked by admin' ,
   `last_login_time` DATETIME  COMMENT 'user create time',
-  `passwd_hashed` BOOLEAN NOT NULL DEFAULT FALSE COMMENT 'password is hashed' ,
-  UNIQUE `nick_name` (`nick_name`))
+  `hostname` VARCHAR(128)  comment 'last seen hostname',
+--  `passwd_hashed` BOOLEAN NOT NULL DEFAULT FALSE COMMENT 'password is hashed' ,
+  UNIQUE `user_name` (`user_name`))
   ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `vigi8blog`.`posts` (
@@ -26,8 +27,6 @@ CREATE TABLE IF NOT EXISTS `vigi8blog`.`posts` (
  FOREIGN KEY (`author_id`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
   ) ENGINE = InnoDB;
 
---  ALTER TABLE vigi8blog`.`post`
---  ADD FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
 
  CREATE TABLE IF NOT EXISTS `vigi8blog`.`comments` (
  `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html  xmlns:th="https://www.thymeleaf.org">
+
+<body>
+
+<div th:fragment="userPasswordSubform">
+    <div class="col-md-4">
+        <label for="validationCustom03" class="form-label" th:text=#{userFormPasswdLabel}></label>
+        <input type="password" class="form-control" id="validationCustom03" th:field="*{password}" required>
+
+        <div  th:class="${#fields.hasErrors('password') ? 'invalid-feedback' : 'valid-feedback'}" >
+            <ul>
+                <li th:each="err : ${#fields.errors('password')}" th:text=${err}></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="userConfirmPasswordSubform">
+    <div class="col-md-4">
+        <label for="validationCustom05" class="form-label" th:text=#{userFormPasswdRepeatLabel}></label>
+        <input type="password" class="form-control" id="validationCustom05" th:field="*{confirmPassword}"required>
+
+        <div  th:class="${#fields.hasErrors('confirmPassword') ? 'invalid-feedback' : 'valid-feedback'}" >
+            <ul>
+                <li th:each="err : ${#fields.errors('confirmPassword')}" th:text=${err}></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="disabledUserNameSubForm">
+        <div class="col-md-4">
+            <label for="disabledTextInput" class="form-label" th:text=#{userFormUserNameLabel}></label>
+            <input type="text" class="form-control" id="disabledTextInput"
+                   readonly="true"
+                   th:field="*{userName}">
+        </div>
+</div>
+
+<div th:fragment="userNameSubForm">
+    <div class="col-md-4">
+        <label for="validationCustom00" class="form-label" th:text=#{userFormUserNameLabel}></label>
+        <input type="text" class="form-control" id="validationCustom00" th:field="*{userName}" th:errorclass="error"
+               th:placeholder="#{userFormUserNamePlaceholder}" aria-describedby="validationServer00Feedback"  required>
+
+        <div  th:class="${#fields.hasErrors('userName') ? 'invalid-feedback' : 'valid-feedback'}" >
+            <ul>
+                <li th:each="err : ${#fields.errors('userName')}" th:text=${err}></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="userEmailSubForm">
+    <div class="col-md-4">
+        <label for="validationCustom04" class="form-label" th:text=#{userFormEmailLabel} >Email</label>
+        <input type="email" class="form-control" id="validationCustom04" th:field="*{email}"th:errorclass="error"
+               th:placeholder="#{userFormEmailPlaceholder}" aria-describedby="validationServer04Feedback" required>
+
+        <div  th:class="${#fields.hasErrors('email') ? 'invalid-feedback' : 'valid-feedback'}" >
+            <ul>
+                <li th:each="err : ${#fields.errors('email')}" th:text=${err}></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<div th:fragment="userFirstNameSubForm">
+    <div class="col-md-4">
+        <label for="validationCustom01" class="form-label" th:text=#{userFormNameLabel}></label>
+        <input type="text" class="form-control" id="validationCustom01" th:field="*{name}" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+</div>
+
+<div th:fragment="userSurNameSubForm">
+    <div class="col-md-4">
+        <label for="validationCustom02" class="form-label" th:text=#{userFormSurNameLabel}></label>
+        <input type="text" class="form-control" id="validationCustom02" th:field="*{surname}" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+</div>
+
+
+<!--th:placeholder="*{userName}"-->
+<div th:fragment="userUpdateButton">
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit" th:text=#{userUpdateSubmit}></button>
+    </div>
+</div>
+
+<div th:fragment="userCreateButton">
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit" th:text=#{userCreationSubmit}></button>
+    </div>
+</div>
+
+
+</body>
+</html>

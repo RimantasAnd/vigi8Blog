@@ -1,7 +1,9 @@
-package lt.codeacademy.vigi8BLog.Controller;
+package lt.codeacademy.vigi8BLog.controller;
 
-import lt.codeacademy.vigi8BLog.Entity.Post;
-import lt.codeacademy.vigi8BLog.Service.PostService;
+import lombok.extern.slf4j.Slf4j;
+import lt.codeacademy.vigi8BLog.entity.Comment;
+import lt.codeacademy.vigi8BLog.entity.Post;
+import lt.codeacademy.vigi8BLog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.List;
-
+@Slf4j
 @Controller
 @RequestMapping(path="/posts")
 public class PostController {
@@ -74,7 +76,7 @@ public class PostController {
 
     @PostMapping("/create")
     public String createPost(Post post, Model model) {
-        post.setAuthorId(1L);
+        post.setAuthorId(1L);//shoud be loged user id
         post.setPostIp(getClientIp());
         post.setPostTimeStamp(LocalDateTime.now());
         Post createdPost = postService.create(post);
@@ -83,17 +85,24 @@ public class PostController {
     }
 
     @GetMapping("/locked")
-    public String lockPosts( Model model) {
+    public String lockedPosts( Model model) {
         List<Post> posts = postService.findByPostLockedByAdminTrue();
 //        List<Post> posts = postPage.getContent();
         model.addAttribute("posts",posts);
-//        model.addAttribute("postId", post.getId());
-//        model.addAttribute("postTitle", post.getTitle());
-//        model.addAttribute("postText", post.getPostText());
-//        model.addAttribute("postPostIp", post.getPostIp());
+//        dto.addAttribute("postId", post.getId());
+//        dto.addAttribute("postTitle", post.getTitle());
+//        dto.addAttribute("postText", post.getPostText());
+//        dto.addAttribute("postPostIp", post.getPostIp());
         return "lockedPosts";
      }
 
-
+    @GetMapping("/post/read/{id}")
+    public String postGet(@PathVariable(name = "id") Long id, Post post, Model model) {
+        post = postService.findById(id);
+        model.addAttribute("post", post);
+        for (Comment comment:post.getComment()) {
+        }
+        return "postRead";
+    }
 
 }

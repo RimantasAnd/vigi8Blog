@@ -1,4 +1,4 @@
-package lt.codeacademy.vigi8BLog.Entity;
+package lt.codeacademy.vigi8BLog.entity;
 
 
 
@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -41,6 +42,17 @@ public class Post {
     @Column(name="comments_locked")
     private boolean commentsLocked;
 
+//    @Transient
+//    private Long commentsCount= Long.valueOf(0);
+
+
+    @OneToMany(mappedBy="post",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL)
+
+    private Set<Comment> comment;
+
+
     @Override
     public String toString() {
         return "Post{" +
@@ -48,12 +60,14 @@ public class Post {
                 ", title='" + title + '\'' +
                 ", postText='" + postText + '\'' +
                 ", authorId=" + authorId +
-                ", postIpAddress='" + postIp + '\'' +
-                ", postBlockedByAdmin=" + postLockedByAdmin +
-                ", postDayTime=" + postTimeStamp +
+                ", postTimeStamp=" + postTimeStamp +
+                ", postIp='" + postIp + '\'' +
+                ", postLockedByAdmin=" + postLockedByAdmin +
                 ", commentsLocked=" + commentsLocked +
+//                ", commentsCount=" + commentsCount +
                 '}';
     }
+
 
 
 }

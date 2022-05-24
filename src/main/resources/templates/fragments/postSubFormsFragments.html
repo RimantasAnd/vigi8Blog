@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html  xmlns:th="https://www.thymeleaf.org">
+
+
+<body>
+
+<div th:fragment="postTitleFragment">
+<!--    <span th:text=#{postTitleText}></span>-->
+    <label for="title"th:text=#{postTitleText}></label>
+        <input type="text" th:field="*{title}" autocomplete="off" class="form-control" id="title">
+
+</div>
+
+<div th:fragment="postTextFragment">
+    <label for="editor" th:text=#{postContentText}></label>
+    <textarea id="editor"
+              class="form-control"
+              type="text"
+              rows="10" cols="80"
+
+              th:field="*{postText}"
+              autocomplete="off"
+    >
+                     post name content id is using for JS
+            &lt;p&gt;This is some sample content.&lt;/p&gt;
+    </textarea>
+    <!--              class="form-control"-->
+</div>
+
+
+<div th:fragment="postSwitchCheckDefault">
+    <div class="form-check form-switch">
+        <input th:field="*{commentsLocked}" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault" th:text=#{postCommentsLock}></label>
+    </div>
+</div>
+<div th:fragment="postSwitchCheckChecked">
+    <div class="form-check form-switch">
+        <input th:field="*{commentsLocked}" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+        <label class="form-check-label" for="flexSwitchCheckChecked" th:text=#{postCommentsLock}></label>
+    </div>
+</div>
+
+
+<div th:fragment="postUpdateButton">
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit" th:text=#{postUpdateSubmit}></button>
+    </div>
+</div>
+
+<div th:fragment="postCreateButton">
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit" th:text=#{postCreationSubmit}></button>
+    </div>
+</div>
+
+<div th:fragment="commentCreateButton">
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit" th:text=#{commentCreate}></button>
+    </div>
+</div>
+
+<div th:fragment="postStreem">
+    <div th:each="post: ${posts}" >
+<!--        th:fragment="postsStreem"-->
+        <div class="card">
+            <h5 class="card-header" th:text="${post.getTitle()}">
+
+
+            </h5>
+            <div class="card-body">
+                <span th:text="${post.getPostText()}" class="d-inline-block text-truncate" ></span>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"  th:text="${post.getComment().size()}" > </span>
+            </div>
+<!--            <a href="/posts/post/" class="btn btn-primary">Go somewhere</a>-->
+
+            <a th:href="@{'/posts/post/read/' + ${post.getId()}}" class="btn btn-primary" >Go to post reading</a>
+        </div>
+    </div>
+</div>
+
+<!---->
+<!--<span class="visually-hidden">unread messages</span>-->
+
+
+</body>
+</html>

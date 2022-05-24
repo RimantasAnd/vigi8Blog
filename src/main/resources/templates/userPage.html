@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html  xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/headTopNavigationFragment :: head('vigi8blog | news streem')"></head>
 
+<body>
+<div th:replace="fragments/headTopNavigationFragment :: menu"></div>
 <h1>
     <p th:text="${userNickName}"></p>
 </h1>
 
 
 <h2 >
-    <p>userio id yra</p>
+
+    <p th:text=#{userCurrentId}></p>
     <p  th:text="${userId}"></p>
 
 </h2>

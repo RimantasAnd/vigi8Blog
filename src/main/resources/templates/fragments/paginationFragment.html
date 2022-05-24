@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!--<nav aria-label="..." th:fragment="pagination">-->
+<!--    <ul class="pagination justify-content-center">-->
+<!--        <li class="page-item" th:classappend="(${currentPage+1}==1) ? 'disabled' : ''">-->
+<!--            <a class="page-link"  th:href="@{/(page=${currentPage - 1})}" aria-label="Previous">-->
+<!--                <span aria-hidden="true">&laquo;</span>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        &lt;!&ndash;        <li class="page-item">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <a class="page-link" th:href="@{/(page=${currentPage - 1})}" aria-label="Previous">&ndash;&gt;-->
+<!--        &lt;!&ndash;                <span aria-hidden="true">&laquo;</span>&ndash;&gt;-->
+<!--        &lt;!&ndash;            </a>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </li>&ndash;&gt;-->
+
+
+<!--        <span th:each="page: ${#numbers.sequence(0, totalPages - 1)}">-->
+<!--            <li class="page-item">-->
+
+<!--                <a class="page-link" th:href="@{/(page=${page})}" th:text="${page + 1}"></a>-->
+
+<!--            </li>-->
+<!--        </span>-->
+<!--        <span th:each="page: ${#numbers.sequence(0, totalPages - 1)}">-->
+<!--            <li class="page-item">-->
+
+<!--                <a class="page-link" th:href="@{/(page=${page})}" th:text="${page + 1}"></a>-->
+
+<!--            </li>-->
+<!--        </span>-->
+<!--        <span th:each="page: ${#numbers.sequence(0, totalPages - 1)}">-->
+<!--            <li class="page-item">-->
+
+<!--                <a class="page-link" th:href="@{/(page=${page})}" th:text="${page + 1}"></a>-->
+
+<!--            </li>-->
+<!--        </span>-->
+<!--        <li class="page-item" th:classappend="(${currentPage}==${totalPages-1}) ? 'disabled' : ''">-->
+<!--            <a class="page-link" th:href="@{/(page=${currentPage + 1})}" aria-label="Next">-->
+<!--                <span aria-hidden="true">&raquo;</span>-->
+<!--            </a>-->
+<!--        </li>-->
+
+<!--    </ul>-->
+<!--</nav>-->
+
+<nav aria-label="..." th:fragment="pagination">
+    <ul class="pagination justify-content-center">
+        <li class="page-item" th:classappend="(${currentPage+1}==1) ? 'disabled' : ''">
+            <a class="page-link"  th:href="@{/(page=${currentPage - 1})}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <!--        <li class="page-item">-->
+        <!--            <a class="page-link" th:href="@{/(page=${currentPage - 1})}" aria-label="Previous">-->
+        <!--                <span aria-hidden="true">&laquo;</span>-->
+        <!--            </a>-->
+        <!--        </li>-->
+        <span th:each="page: ${#numbers.sequence(0, totalPages - 1)}">
+            <li class="page-item">
+
+                <a class="page-link" th:href="@{/(page=${page})}" th:text="${page + 1}"></a>
+
+            </li>
+        </span>
+        <li class="page-item" th:classappend="(${currentPage}==${totalPages-1}) ? 'disabled' : ''">
+            <a class="page-link" th:href="@{/(page=${currentPage + 1})}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+
+    </ul>
+</nav>
+
+</body>
+</html>

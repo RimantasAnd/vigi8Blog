@@ -1,24 +1,28 @@
-package lt.codeacademy.vigi8BLog.Service;
+package lt.codeacademy.vigi8BLog.service;
 
 
-import lt.codeacademy.vigi8BLog.Entity.Post;
-import lt.codeacademy.vigi8BLog.Exception.PostNotFoundException;
-import lt.codeacademy.vigi8BLog.Repository.PostRepository;
+import lombok.extern.slf4j.Slf4j;
+import lt.codeacademy.vigi8BLog.entity.Post;
+import lt.codeacademy.vigi8BLog.exception.PostNotFoundException;
+import lt.codeacademy.vigi8BLog.repository.CommentRepository;
+import lt.codeacademy.vigi8BLog.repository.PostRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
+@Slf4j
 @Service
 public class PostService {
 
     private final PostRepository postRepository;
+    private final CommentRepository commentRepository;
 
 
-    public PostService(PostRepository postRepository) {
+    public PostService(PostRepository postRepository, CommentRepository commentRepository) {
         this.postRepository = postRepository;
+        this.commentRepository = commentRepository;
     }
 
     public Post create(Post post){
@@ -31,21 +35,27 @@ public class PostService {
                 .orElseThrow(PostNotFoundException::new);
     }
 
+
 //    public Page<Post> findAllPageable(int pageSize, int pageNumber) {
 //        Pageable pageable = Pageable
 //                .ofSize(pageSize)
 //                .withPage(pageNumber);
 //
-//        return postRepository.findAll(pageable);
+//        return postRepository.findByPostLockedByAdminFalsePageable(pageable);
 //    }
+
+
     public Page<Post> findAllPageable(int pageSize, int pageNumber) {
+        Page<Post> posts;
         Pageable pageable = Pageable
                 .ofSize(pageSize)
                 .withPage(pageNumber);
-
-        return postRepository.findByPostLockedByAdminFalsePageable(pageable);
+        posts = postRepository.findByPostLockedByAdminFalsePageable(pageable);
+//        for (Post post:posts) {
+//            post.setCommentsCount(commentRepository.countFindAllByParentPostId(post.getId()));
+//        }
+        return posts;
     }
-
 
 
 

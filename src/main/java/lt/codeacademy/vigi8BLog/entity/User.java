@@ -1,4 +1,4 @@
-package lt.codeacademy.vigi8BLog.Entity;
+package lt.codeacademy.vigi8BLog.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,21 +10,21 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
+
 @Entity
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @Table(name = "users")
-public class User {
+public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
 
     @NotBlank
-    @Size(min=6, message="{user.nickName.toShort}")
-//    @Column(name="nick_name")
-    @Column(name="nick_name",unique = true)
-    private String nickName;
+    @Size(min=6, message="{user.userName.toShort}")
+    @Column(name="user_name",unique = true)
+    private String userName;
 
     @NotBlank
     @Size(min=6, message="{user.password.toShort}")
@@ -53,11 +53,32 @@ public class User {
     @Column(name="email")
     private String email;
 
+    @Column(name="hostname")
+    private String hostName;
 
-//    @Column(name="passwd_hashed")
-//    private boolean passwdHashed;
-//
-//    public boolean isPasswdHashed() {
-//        return passwdHashed;
-//    }
+    @Transient
+    private String confirmPassword;
+
+    @Transient
+    private boolean passwdIsHashed=false;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", lastIp='" + lastIp + '\'' +
+                ", adminLock=" + adminLock +
+                ", lastLoginTime=" + lastLoginTime +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+//                ", confirmPassword='" + confirmPassword + '\'' +
+                '}';
+    }
+
+
+
+
 }

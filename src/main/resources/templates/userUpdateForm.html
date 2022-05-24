@@ -6,25 +6,31 @@
 <div th:replace="fragments/headTopNavigationFragment :: menu"></div>
 
 
-<div>
-        <h1 th:text=#{userCreationSubmit}>  </h1>
 
-    <form th:action="@{/users/create}" th:object="${user}" method="post" class="row g-3" >
-        <div th:replace="fragments/userSubFormsFragments :: userNameSubForm"></div>
+
+
+<div>
+    <h1>Update user</h1>
+    <form th:action="@{/users/update/}+${userId}" th:object="${user}" method="post" class="row g-3" >
+        <div th:replace="fragments/userSubFormsFragments :: disabledUserNameSubForm"></div>
         <div th:replace="fragments/userSubFormsFragments :: userFirstNameSubForm"></div>
         <div th:replace="fragments/userSubFormsFragments :: userSurNameSubForm"></div>
         <div th:replace="fragments/userSubFormsFragments :: userEmailSubForm"></div>
         <div th:replace="fragments/userSubFormsFragments :: userPasswordSubform"></div>
         <div th:replace="fragments/userSubFormsFragments :: userConfirmPasswordSubform"></div>
-        <div th:replace="fragments/userSubFormsFragments :: userCreateButton"></div>
-
+        <div th:replace="fragments/userSubFormsFragments :: userUpdateButton"></div>
     </form>
+<!--    <div th:replace="fragments/formsUUFragments :: user-update-form"></div>-->
 </div>
+
+
+
 
 
 <div>
     <a th:href="@{/users}">Back to list</a>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

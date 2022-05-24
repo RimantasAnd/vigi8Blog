@@ -1,6 +1,6 @@
-package lt.codeacademy.vigi8BLog.Repository;
+package lt.codeacademy.vigi8BLog.repository;
 
-import lt.codeacademy.vigi8BLog.Entity.Post;
+import lt.codeacademy.vigi8BLog.entity.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
